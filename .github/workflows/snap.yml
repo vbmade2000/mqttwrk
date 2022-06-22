@@ -18,7 +18,7 @@ jobs:
       - name: Print secret
         run: |
             echo "This is secret"
-            echo ${{ secrets.STORE_LOGIN }}
+            echo ${{ secrets.MAC_NAME }}
       - name: Publish snap
         uses: snapcore/action-publish@v1
         env:
