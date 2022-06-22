@@ -15,12 +15,12 @@ jobs:
       - name: Build snap
         uses: snapcore/action-build@v1
         id: build-snap
-      - name: Publish snap
-        uses: snapcore/action-publish@v1
       - name: Print secret
         run: |
             echo "This is secret"
             echo ${{ secrets.STORE_LOGIN }}
+      - name: Publish snap
+        uses: snapcore/action-publish@v1
         env:
           SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.STORE_LOGIN }}
         with:
