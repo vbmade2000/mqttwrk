@@ -19,10 +19,15 @@ parts:
     plugin: rust
     source: .
 
-    # Here we extract app version from Cargo.toml and set it as snap's version.
+    # Extract app version from Cargo.toml and set it as snap's version.
     override-pull: |
       snapcraftctl pull
       snapcraftctl set-version $(cat Cargo.toml | grep version | head -n1 | cut -d"=" -f2 | awk '{$1=$1};1')
+      snapcraftctl set-grade stable
+    
+    # Build a snap here.
+    override-build: |
+      snapcraftctl build
 
   
 apps:
