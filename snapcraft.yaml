@@ -8,7 +8,7 @@ grade: stable # must be 'stable' to release into candidate/stable channels. Indi
 confinement: strict # degree of isolation.
 contact: https://bytebeam.io
 license: Apache-2.0
-title: A MQTT server bench marking tool # The canonical title of the application, displayed in the software centre graphical frontends
+title: A MQTT server bench marking tool # The canonical title of the application, displayed in the software centre graphical frontends.
 
 
 architectures:
