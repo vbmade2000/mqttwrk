@@ -10,6 +10,7 @@ contact: https://bytebeam.io
 license: Apache-2.0
 title: A MQTT server bench marking tool # The canonical title of the application, displayed in the software centre graphical frontends.
 
+adopt-info: mqttwrk
 
 architectures:
   - build-on: [amd64,i386]
