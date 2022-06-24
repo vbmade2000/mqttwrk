@@ -1,4 +1,4 @@
-name: Snap
+name: Release snap
 
 on:
   push:
