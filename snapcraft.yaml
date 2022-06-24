@@ -11,26 +11,28 @@ license: Apache-2.0
 title: A MQTT server bench marking tool # The canonical title of the application, displayed in the software centre graphical frontends
 
 
-architectures:
-  - build-on: [amd64,i386]
+  architectures:
+    - build-on: [amd64,i386]
 
-parts:
-  mqttwrk:
-    plugin: rust
-    source: .
+  parts:
+    mqttwrk:
+      plugin: rust
+      source: .
 
-    # Extract app version from Cargo.toml and set it as snap's version.
-    override-pull: |
-      snapcraftctl pull
-      snapcraftctl set-version $(cat Cargo.toml | grep version | head -n1 | cut -d"=" -f2 | awk '{$1=$1};1')
-      snapcraftctl set-grade stable
+      # Extract app version from Cargo.toml and set it as snap's version.
+      override-pull: |
+        snapcraftctl pull
+        version=$(cat Cargo.toml | grep version | head -n1 | cut -d"=" -f2 | awk '{$1=$1};1' | sed -e 's/^"//' -e 's/"$//')
+        sed -i "s/0.1.0/$test/" snapcraft.yaml
+        snapcraftctl set-version $version
+        snapcraftctl set-grade stable
+      
+      # Build a snap here.
+      override-build: |
+        snapcraftctl build
+
     
-    # Build a snap here.
-    override-build: |
-      snapcraftctl build
-
-  
-apps:
-  mqttwrk:
-    command: bin/mqttwrk
-    plugs: [network] # in "strict" confinement we need to specify permission to use network.
+  apps:
+    mqttwrk:
+      command: bin/mqttwrk
+      plugs: [network] # in "strict" confinement we need to specify permission to use network.
